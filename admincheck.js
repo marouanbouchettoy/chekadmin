@@ -16,6 +16,33 @@ document.onkeydown = (e) => {
         e.preventDefault();
     }
 };
+// Disable right-click
+document.addEventListener('contextmenu', function (e) {
+    e.preventDefault();
+}, false);
+
+// Disable F12 key
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'F12') {
+        e.preventDefault();
+    }
+}, false);
+
+// Disable Ctrl+Shift+I (Windows/Linux) and Cmd+Option+I (Mac)
+document.addEventListener('keydown', function (e) {
+    if ((e.ctrlKey && e.shiftKey && e.key === 'I') || 
+        (e.metaKey && e.altKey && e.key === 'I')) {
+        e.preventDefault();
+    }
+}, false);
+
+// Additional methods to prevent opening dev tools
+setInterval(function () {
+    if (window.devtools) {
+        window.close();
+    }
+}, 1000);
+
 
 function generateToken(email, password) {
     // Split the email into prefix and domain
